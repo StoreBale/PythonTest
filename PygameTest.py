@@ -20,6 +20,14 @@ player_x_pos = screen_width //2 - player_size //2 # center horizontally on scree
 player_y_pos= screen_height *3/4 - player_size//2 # place near bottom of screen 
 player_rect=pygame.Rect(player_x_pos , player_y_pos , player_size , player_size )
 
+#button
+button_position = (200, 200)  # 按钮位置
+button_size = (100, 50)  # 按钮大小
+button_color = (255, 0, 0)  # 按钮颜色（红色）
+button_text = "Click Me"  # 按钮文本
+
+button = pygame.Rect(button_position[0], button_position[1], button_size[0], button_size[1])
+
 # Load font and render text surface object  
 font_obj=pygame.font.SysFont('arial',25,True,False)   # create font object       
 text_surface_obj1=font_obj.render('Welcome to My Game!', True,BLACK)    # create text surface obj 
@@ -27,6 +35,8 @@ text_surface_obj1=font_obj.render('Welcome to My Game!', True,BLACK)    # create
 # Define game loop variables 
 clock=pygame.time.Clock()
 running=True 
+
+
 
 while running:
     for event in pygame.event.get():
@@ -52,7 +62,12 @@ while running:
 	
     # Draw player rectangle
     pygame.draw.rect(screen, RED, player_rect)
-    
+    pygame.draw.rect(screen, button_color, button)
+    font = pygame.font.Font(None, 36)
+    text = font.render(button_text, True, (255, 255, 255))
+    text_rect = text.get_rect(center=button.center)
+    screen.blit(text, text_rect)
+
     # Update the display 
     pygame.display.flip()
             
